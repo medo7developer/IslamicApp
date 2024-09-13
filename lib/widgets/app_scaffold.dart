@@ -27,12 +27,9 @@ class _AppScaffoldState extends State<AppScaffold> {
               DecorationImage(image: AssetImage(themeProvider.mainBackground))),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
           title: Text(
             widget.appBarTitle ?? '',
-            style: AppStyle.appBarStyle,
           ),
-          centerTitle: true,
         ),
         body: widget.body,
         backgroundColor: Colors.transparent,

@@ -21,8 +21,6 @@ class Quran extends StatelessWidget {
             AppAssets.quranTabLogo,
           ),
         ),
-
-
         Expanded(
           flex: 7,
           child: Stack(
@@ -35,25 +33,40 @@ class Quran extends StatelessWidget {
                     height: 5,
                     color: AppColors.primaryColor,
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     children: [
                       Expanded(
                         child: Text(
-                          'Name', style: AppStyle.titlesTextStyle, textAlign: TextAlign.center,),
+                          'Name',
+                          style: Theme.of(context).textTheme.displayLarge,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                       Expanded(
-                        child: Text(
-                            'Verses', style: AppStyle.titlesTextStyle, textAlign: TextAlign.center),
+                        child: Text('Verses',
+                            style: Theme.of(context).textTheme.displayLarge,
+                            textAlign: TextAlign.center),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10,),
-                  Divider(height: 5, thickness: 5, color: AppColors.primaryColor,),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Divider(
+                    height: 5,
+                    thickness: 5,
+                    color: AppColors.primaryColor,
+                  ),
                   Expanded(child: buildSuraList()),
                 ],
               ),
-              VerticalDivider(color: AppColors.primaryColor, thickness: 5, )
+              VerticalDivider(
+                color: AppColors.primaryColor,
+                thickness: 5,
+              )
             ],
           ),
         ),
@@ -62,31 +75,35 @@ class Quran extends StatelessWidget {
   }
 
   Widget buildSuraList() => ListView.builder(
-      itemCount: Constants.suraNames.length,
-      itemBuilder: (context, index) => InkWell(
-        onTap: (){
-          Navigator.pushNamed(context, SuraDetails.routeName,
-          arguments: SuraDetailsArgms(
-              suraName: Constants.suraNames[index], fileName: '${index + 1}.txt'),
-          );
-        },
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                Constants.suraNames[index],textAlign: TextAlign.center,
-                style: AppStyle.titlesTextStyle,
+        itemCount: Constants.suraNames.length,
+        itemBuilder: (context, index) => InkWell(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              SuraDetails.routeName,
+              arguments: SuraDetailsArgms(
+                  suraName: Constants.suraNames[index],
+                  fileName: '${index + 1}.txt'),
+            );
+          },
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  Constants.suraNames[index],
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.displayLarge
+                ),
               ),
-            ),
-
-            Expanded(
-              child: Text(
-                style: AppStyle.titlesTextStyle,
-                  Constants.versesNumber[index].toString(),textAlign: TextAlign.center,
+              Expanded(
+                child: Text(
+                    style: Theme.of(context).textTheme.displayLarge,
+                  Constants.versesNumber[index].toString(),
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-  );
+      );
 }

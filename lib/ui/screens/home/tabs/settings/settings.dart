@@ -5,6 +5,7 @@ import 'package:islamapp/utils/app_colors.dart';
 import 'package:islamapp/utils/app_style.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -23,7 +24,7 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     languageProvider = Provider.of(context);
-    themeProvider  = Provider.of(context);
+    themeProvider = Provider.of(context);
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -31,7 +32,7 @@ class _SettingsState extends State<Settings> {
         children: [
           Text(
             AppLocalizations.of(context)!.language,
-            style: AppStyle.appBarStyle,
+            style: Theme.of(context).appBarTheme.titleTextStyle,
           ),
           buildLanguageDropDown(),
           buildThemeSwitch()
@@ -41,40 +42,38 @@ class _SettingsState extends State<Settings> {
   }
 
   Widget buildLanguageDropDown() => DropdownButton(
-        isExpanded: true,
-        value: languageProvider.locale,
-        onChanged: (value) {
-          languageProvider.locale = value ?? languageProvider.locale;
-          languageProvider.notifyListeners();
-          setState(() {});
-        },
-        items: [
-          DropdownMenuItem(
-            value: 'ar',
-            child: Text('العربية'),
-          ),
-          DropdownMenuItem(
-            value: 'en',
-            child: Text('English'),
-          ),
-        ],
-      );
+    isExpanded: true,
+    value: languageProvider.locale,
+    onChanged: (value) {
+      languageProvider.newLocale = value ?? languageProvider.locale;
+    },
+    items: [
+      DropdownMenuItem(
+        value: 'ar',
+        child: Text('العربية'),
+      ),
+      DropdownMenuItem(
+        value: 'en',
+        child: Text('English'),
+      ),
+    ],
+  );
 
   buildThemeSwitch() => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             AppLocalizations.of(context)!.theme,
-            style: AppStyle.titlesTextStyle,
+            style: Theme.of(context).appBarTheme.titleTextStyle,
           ),
           Switch(
             value: themeProvider.isDarkThemeEnabled,
             activeColor: AppColors.primaryColor,
             onChanged: (value) {
               themeProvider.newTheme = value ? ThemeMode.dark : ThemeMode.light;
-              themeProvider.notifyListeners();
             },
           ),
         ],
       );
+
 }

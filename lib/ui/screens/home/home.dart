@@ -19,7 +19,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int selectedTapIndex = 3;
+  int selectedTapIndex = 0;
 
   List<Widget> tabs = [Quran(), Ahadeth(), MyRadio(), Sebha(), Settings()];
 
@@ -64,4 +64,5 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
 }

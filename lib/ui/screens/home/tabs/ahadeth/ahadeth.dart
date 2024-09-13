@@ -55,7 +55,7 @@ class _AhadethState extends State<Ahadeth> {
                       Expanded(
                           child: Text(
                         'Name',
-                        style: AppStyle.titlesTextStyle,
+                        style: Theme.of(context).textTheme.displayLarge,
                         textAlign: TextAlign.center,
                       )),
                     ],
@@ -100,7 +100,8 @@ class _AhadethState extends State<Ahadeth> {
           itemCount: hadethList.length,
           itemBuilder: (context, index) => InkWell(
             onTap: () {
-              Navigator.pushNamed(context, HadethDetails.routeName, arguments: hadethList[index]);
+              Navigator.pushNamed(context, HadethDetails.routeName,
+                  arguments: hadethList[index]);
             },
             child: Row(
               children: [
@@ -108,7 +109,7 @@ class _AhadethState extends State<Ahadeth> {
                   child: Text(
                     hadethList[index].hadethName,
                     textAlign: TextAlign.center,
-                    style: AppStyle.titlesTextStyle,
+                    style: Theme.of(context).textTheme.displayLarge,
                   ),
                 ),
               ],

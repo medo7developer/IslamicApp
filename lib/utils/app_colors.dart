@@ -5,7 +5,7 @@ abstract class AppColors{
   static const Color accentColor = Color(0xff242424);
   static const Color white = Colors.white;
   static const transparent = Colors.transparent;
-  static const Color textColortOfSebha = Color(0xFFC8B295);
+  static const Color textColortOfSebha = Color(0xFF413F4B);
   // dark Color
 
   static const Color primarDarkyColor = Color(0xff0a4081);
